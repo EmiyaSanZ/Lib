@@ -3462,20 +3462,27 @@ function Library:CreateWindow(...)
 
         Cursor:Remove();
     end
-
+    
     Library:GiveSignal(InputService.InputBegan:Connect(function(Input, Processed)
+        print("Key pressed:", Input.KeyCode)  -- เพิ่มบรรทัดนี้เพื่อตรวจสอบ
         if type(Library.ToggleKeybind) == 'table' and Library.ToggleKeybind.Type == 'KeyPicker' then
             if Input.UserInputType == Enum.UserInputType.Keyboard and Input.KeyCode.Name == Library.ToggleKeybind.Value then
                 task.spawn(Library.Toggle)
             end
-        elseif Input.KeyCode == Enum.KeyCode.m or (Input.KeyCode == Enum.KeyCode.M) then
+        elseif Input.KeyCode == Enum.KeyCode.M then  -- แก้ไขเป็น Enum.KeyCode.M
             task.spawn(Library.Toggle)
         end
     end))
 
+
     if Config.AutoShow then task.spawn(Library.Toggle) end
 
     Window.Holder = Outer;
+    if Window.Holder.Visible then
+        Window.Holder.Visible = false
+    else
+        Window.Holder.Visible = true
+    end
 
     return Window;
 end;
