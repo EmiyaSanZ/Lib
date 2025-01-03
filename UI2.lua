@@ -465,8 +465,8 @@ end
 
 function OrionLib:MakeWindow(WindowConfig)
 	local FirstTab = true
-	local Minimized = true
-	local Loaded = true
+	local Minimized = false
+	local Loaded = false
 	local UIHidden = false
 
 	WindowConfig = WindowConfig or {}
