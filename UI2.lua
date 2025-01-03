@@ -449,22 +449,18 @@ function OrionLib:MakeNotification(NotificationConfig)
 end    
 
 function OrionLib:Init()
-    if OrionLib.SaveCfg then	
-        pcall(function()
-            if isfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt") then
-                LoadCfg(readfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt"))
-                OrionLib:MakeNotification({
-                    Name = "Configuration",
-                    Content = "Auto-loaded configuration for the game " .. game.GameId .. ".",
-                    Time = 5
-                })
-            end
-        end)		
-    end
-    
-    -- Hide GUI initially
-    MainWindow.Visible = false
-    UIHidden = true
+	if OrionLib.SaveCfg then	
+		pcall(function()
+			if isfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt") then
+				LoadCfg(readfile(OrionLib.Folder .. "/" .. game.GameId .. ".txt"))
+				OrionLib:MakeNotification({
+					Name = "Configuration",
+					Content = "Auto-loaded configuration for the game " .. game.GameId .. ".",
+					Time = 5
+				})
+			end
+		end)		
+	end	
 end
 
 function OrionLib:MakeWindow(WindowConfig)
